@@ -1,6 +1,5 @@
 import express from 'express';
 import axios from 'axios';
-import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { getGithubAuthURI, getGithubAccesstokenURI } from '../utils/auth.js';
 import { saveUser } from '../controllers/user.js';

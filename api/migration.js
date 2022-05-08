@@ -50,11 +50,19 @@ const createBlogTable = async () => {
                 {
                     AttributeName: 'id',
                     KeyType: 'HASH'
+                },
+                {
+                    AttributeName: 'user_id',
+                    KeyType: 'RANGE'
                 }
             ],
             AttributeDefinitions: [
                 {
                     AttributeName: 'id',
+                    AttributeType: 'S'
+                },
+                {
+                    AttributeName: 'user_id',
                     AttributeType: 'N'
                 }
             ],
@@ -70,5 +78,10 @@ const createBlogTable = async () => {
     }
 }
 
-createUserTable();
-createBlogTable();
+
+async function migrate() {
+    await createUserTable().catch(err => console.log(err));
+    await createBlogTable().catch(err => console.log(err));
+}
+
+migrate();
