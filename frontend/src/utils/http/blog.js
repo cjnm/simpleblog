@@ -9,10 +9,26 @@ const createNewBlog = async (title, content) => {
             { title, content },
             headers
         )
+
+        return response.data;
     } catch (error) {
         console.log(error);
     }
 
 }
 
-export { createNewBlog };
+const getAllBlogs = async () => {
+    try {
+        const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/blog`,
+        )
+
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+
+}
+
+export { createNewBlog, getAllBlogs };
