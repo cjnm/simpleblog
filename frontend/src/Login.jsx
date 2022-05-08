@@ -14,7 +14,7 @@ export default function Login() {
                 <Button size="sm" light>
                   View Blog
                 </Button>
-                <Button size="sm">Login with Github</Button>
+                <Button onClick={() => { window.location.replace(`${process.env.REACT_APP_API_URL}/auth/github`) }} size="sm">Login with Github</Button>
               </Row>
             </Card.Footer>
           </Card>
