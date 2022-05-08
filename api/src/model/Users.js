@@ -1,6 +1,6 @@
 import { getDynamoDBClient } from '../utils/dynamodb.js';
 
-const saveClientInfo = async () => {
+const saveUserInfo = async (user) => {
     try {
         const dynamoDBClient = getDynamoDBClient();
         const params = {
@@ -8,13 +8,7 @@ const saveClientInfo = async () => {
                 [process.env.DYNAMODB_USER_TABLE]: [
                     {
                         PutRequest: {
-                            Item: {
-                                id: 1,
-                                username: 'test',
-                                name: 'test',
-                                email: 'seejan.raj@gmail.com',
-                                avatar_url: 'https://avatars2.githubusercontent.com/u/52709818?s=460&v=4'
-                            }
+                            Item: user
                         }
                     }
                 ]
@@ -27,4 +21,4 @@ const saveClientInfo = async () => {
     }
 }
 
-export { saveClientInfo }
+export { saveUserInfo }

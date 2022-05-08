@@ -1,6 +1,9 @@
 import express from 'express';
 import axios from 'axios';
+import passport from 'passport';
+import jwt from 'jsonwebtoken';
 import { getGithubAuthURI, getGithubAccesstokenURI } from '../utils/auth.js';
+import { saveUser } from '../controllers/user.js';
 
 const authRouter = express.Router();
 
@@ -23,7 +26,23 @@ authRouter.get('/github/callback', async (req, res) => {
         //preapre user info
         const { login: username, id, avatar_url, name, email } = user_response.data;
 
+        await saveUser(
+            {
+                username,
+                id,
+                avatar_url,
+                name,
+                email
+            }
+        );
+        const token = jwt.sign(
+            { username: username, id: id },
+            `${process.env.JWT_SECRET}-${id}`,
+            { expiresIn: '12h' }
+        );
 
+
+        res.redirect(`${process.env.FRONTEND_URI}/login?jwt=${token}&username=${username}&id=${id}`);
     } catch (error) {
         console.log(error);
         res.redirect('/');
