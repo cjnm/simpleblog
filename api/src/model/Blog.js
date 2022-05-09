@@ -17,6 +17,8 @@ const saveBlog = async (id, username, title, content, avatar_url) => {
                                 username: username,
                                 title: title,
                                 content: content,
+                                created_at: new Date().toISOString(),
+                                updated_at: new Date().toISOString(),
                                 avatar_url: avatar_url || '',
                             }
                         }
@@ -25,7 +27,9 @@ const saveBlog = async (id, username, title, content, avatar_url) => {
             }
         };
 
+        // Invalidate cache while creating the blog
         await invalidateCache(id);
+
         await dynamoDBClient.batchWrite(params).promise();
 
     } catch (error) {
@@ -132,10 +136,11 @@ const updateItem = async (title, content, blog_id, user_id) => {
                 id: blog_id,
                 user_id: user_id
             },
-            UpdateExpression: 'set title = :title, content = :content',
+            UpdateExpression: 'set title = :title, content = :content, updated_at = :updated_at',
             ExpressionAttributeValues: {
                 ':title': title,
-                ':content': content
+                ':content': content,
+                ':updated_at': new Date().toISOString()
             }
         }
 
