@@ -111,7 +111,8 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 
 ## Blog Endpoints
 
-####Get a list of all the blog posts.
+#### Get a list of all the blog posts.
+
 `GET /blog`
 
 ###### 1. Auth header not required.
