@@ -75,8 +75,6 @@ const deleteItemById = async (blog_id, user_id) => {
             }
         }
 
-        await dynamoDBClient.delete(params).promise();
-
     } catch (error) {
         console.log(error);
     }

@@ -6,15 +6,17 @@ const auth = (req, res, next) => {
     const id = req.headers['x-user-id'];
     const username = req.headers['x-user-username'];
     const avatar_url = req.headers['x-user-avatar'];
-    const token = req.headers['authorization'].split(' ')[1];
+    const jwt_token = req.headers['authorization'];
 
-    if (!token || !id || !username) {
+    if (!jwt_token || !id || !username) {
         return res.status(401).json({
             success: false,
             status: 401,
             message: "Unauthorized"
         });
     }
+
+    const token = jwt_token.split(' ')[1];
 
     try {
         const decoded = jwt.verify(token, `${JWT_SECRET}-${id}`);
@@ -34,7 +36,7 @@ const auth = (req, res, next) => {
         return res.status(401).json({
             success: false,
             status: 401,
-            message: "Unauthorized"
+            message: "Authorization Error"
         });
     }
     return next();

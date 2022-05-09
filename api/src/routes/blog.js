@@ -5,8 +5,13 @@ import { auth } from '../middleware/auth.js';
 import { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById, updateBlog } from '../controllers/blog.js';
 
 blogRouter.post('/new', auth, async (req, res) => {
+
     const { id, username, avatar_url } = req;
     const { title, content } = req.body;
+
+    if (!title || !content) {
+        return res.status(401).json({ success: false, status: 401, message: 'Cannot save empty contents.' });
+    }
 
     const response = await createBlog(id, username, title, content, avatar_url);
 
@@ -50,6 +55,10 @@ blogRouter.put('/:blog_id', auth, async (req, res) => {
     const { blog_id } = req.params;
     const { id: user_id } = req;
     const { title, content } = req.body;
+
+    if (!title || !content) {
+        return res.status(401).json({ success: false, status: 401, message: 'Cannot update blog with empty contents.' });
+    }
 
     let response = await updateBlog(title, content, blog_id, user_id);
 

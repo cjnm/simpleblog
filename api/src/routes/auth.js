@@ -41,7 +41,7 @@ authRouter.get('/github/callback', async (req, res) => {
         );
 
 
-        res.redirect(`${process.env.FRONTEND_URI}/login?jwt=${token}&username=${username}&id=${id}&avatar_url=${avatar_url}`);
+        res.redirect(`${process.env.FRONTEND_URI}/login?jwt=Bearer ${token}&username=${username}&id=${id}&avatar_url=${avatar_url}`);
     } catch (error) {
         console.log(error);
         res.redirect('/');

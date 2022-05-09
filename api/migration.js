@@ -37,7 +37,9 @@ const createUserTable = async () => {
 
         await dynamoDBClient.createTable(params).promise();
     } catch (error) {
-        console.log(error);
+        if (error.message === 'Cannot create preexisting table') {
+            console.log('Table already created.');
+        }
     }
 }
 
@@ -74,7 +76,9 @@ const createBlogTable = async () => {
 
         await dynamoDBClient.createTable(params).promise();
     } catch (error) {
-        console.log(error);
+        if (error.message === 'Cannot create preexisting table') {
+            console.log('Table already created.');
+        }
     }
 }
 

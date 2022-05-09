@@ -82,7 +82,7 @@ export default function MyBlogs({ navigate, user }) {
                         />
                     </Tooltip>
                     <Row justify="flex-end">
-                        <Button onClick={() => { navigate(`/blog/${id}`, { state: { title, content, username, avatar_url, navigate } }) }} auto color="gradient" rounded bordered size="sm">Continue Reading</Button>
+                        <Button onClick={() => { navigate(`/blog/${id}`, { state: { title, content, username, avatar_url } }) }} auto color="gradient" rounded bordered size="sm">Continue Reading</Button>
                     </Row>
                 </Card.Footer>
             </Card>

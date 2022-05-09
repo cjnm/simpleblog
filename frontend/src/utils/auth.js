@@ -4,7 +4,7 @@ const buildAuthHeaders = () => {
         const { jwt, username, id, avatar_url } = JSON.parse(localUser);
         return {
             headers: {
-                Authorization: `Bearer ${jwt}`,
+                Authorization: `${jwt}`,
                 'X-User-Id': id,
                 'X-User-Username': username,
                 'X-User-Avatar': avatar_url
