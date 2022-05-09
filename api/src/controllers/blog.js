@@ -1,4 +1,4 @@
-import { saveBlog, getAllItems, getAllItemsByUser, deleteItemById } from "../model/Blog.js";
+import { saveBlog, getAllItems, getAllItemsByUser, deleteItemById, updateItem } from "../model/Blog.js";
 
 const createBlog = async (id, username, title, content, avatar_url) => {
     try {
@@ -40,4 +40,14 @@ const deleteBlogById = async (blog_id, user_id) => {
     }
 }
 
-export { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById };
+const updateBlog = async (title, content, blog_id, user_id) => {
+    try {
+        const response = await updateItem(title, content, blog_id, user_id);
+        return { success: true, data: response };
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: 'Cannot delete blog' };
+    }
+}
+
+export { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById, updateBlog };

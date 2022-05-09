@@ -57,7 +57,7 @@ export default function MyBlogs({ navigate, user }) {
                             <Text b>{title.length > 45 ? title.slice(0, 40) + '...' : title}</Text>
                         </Grid>
                         <Grid xs={1}>
-                            <FontAwesomeIcon color="#0070F3" icon={faEdit} />
+                            <FontAwesomeIcon color="#0070F3" onClick={() => { navigate(`/edit/${id}`, { state: { title, content, id } }) }} icon={faEdit} />
                             <Spacer x={0.25} />
                             <FontAwesomeIcon color="#FF1CF7" onClick={() => showModal(id)} icon={faTrash} />
                         </Grid>
@@ -82,7 +82,7 @@ export default function MyBlogs({ navigate, user }) {
                         />
                     </Tooltip>
                     <Row justify="flex-end">
-                        <Button onClick={() => { navigate(`/blog/${id}`, { state: { title, content, username, avatar_url } }) }} auto color="gradient" rounded bordered size="sm">Continue Reading</Button>
+                        <Button onClick={() => { navigate(`/blog/${id}`, { state: { title, content, username, avatar_url, navigate } }) }} auto color="gradient" rounded bordered size="sm">Continue Reading</Button>
                     </Row>
                 </Card.Footer>
             </Card>

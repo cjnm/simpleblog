@@ -82,4 +82,28 @@ const deleteItemById = async (blog_id, user_id) => {
     }
 }
 
-export { saveBlog, getAllItems, getAllItemsByUser, deleteItemById }
+const updateItem = async (title, content, blog_id, user_id) => {
+    try {
+        const dynamoDBClient = getDynamoDBClient();
+        const params = {
+            TableName: process.env.DYNAMODB_BLOG_TABLE,
+            Key: {
+                id: blog_id,
+                user_id: user_id
+            },
+            UpdateExpression: 'set title = :title, content = :content',
+            ExpressionAttributeValues: {
+                ':title': title,
+                ':content': content
+            }
+        }
+
+        await dynamoDBClient.update(params).promise();
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export { saveBlog, getAllItems, getAllItemsByUser, deleteItemById, updateItem }

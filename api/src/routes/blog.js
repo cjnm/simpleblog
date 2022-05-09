@@ -2,7 +2,7 @@ import express from 'express';
 const blogRouter = express.Router();
 import { auth } from '../middleware/auth.js';
 
-import { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById } from '../controllers/blog.js';
+import { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById, updateBlog } from '../controllers/blog.js';
 
 blogRouter.post('/new', auth, async (req, res) => {
     const { id, username, avatar_url } = req;
@@ -38,6 +38,20 @@ blogRouter.delete('/:blog_id', auth, async (req, res) => {
     const { id: user_id } = req;
 
     let response = await deleteBlogById(blog_id, user_id);
+
+    if (response.success) {
+        return res.status(200).json({ ...response, status: 200 });
+    } else {
+        return res.status(401).json({ ...response, status: 401 });
+    }
+})
+
+blogRouter.put('/:blog_id', auth, async (req, res) => {
+    const { blog_id } = req.params;
+    const { id: user_id } = req;
+    const { title, content } = req.body;
+
+    let response = await updateBlog(title, content, blog_id, user_id);
 
     if (response.success) {
         return res.status(200).json({ ...response, status: 200 });
