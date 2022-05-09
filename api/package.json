@@ -15,7 +15,7 @@
   "type": "module",
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "migrate": "node migration.js"
   },
   "keywords": [],
