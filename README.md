@@ -59,7 +59,7 @@ yarn start
 ### Endpoints
 
 There are five endpoints available for fetching, updating and deleting blogs and two for internal github authentication.
-The `Postman Collection` is available from the link <https://www.getpostman.com/collections/0be1493ed18bb4391324> or from the file `simpleblog API Endpoints.postman_collection.json` available with this repo.
+The `Postman Collection` is available from the link <https://www.getpostman.com/collections/0be1493ed18bb4391324> or from the file `simpleblog API Endpoints.postman_collection.json` available in this repo.
 
 ### Status Codes
 
@@ -105,7 +105,7 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 }
 ```
 
-######JWT token and user details can be found on browser local storage for loggedin user using `localStorage.getItem('simpleblog-user')` comand on browser console.
+###### JWT token and user details can be found on browser local storage for loggedin user using `localStorage.getItem('simpleblog-user')` comand on browser console.
 
 ###### The `X-User-Avatar` is optional.
 
@@ -113,7 +113,8 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 
 ####Get a list of all the blog posts.
 `GET /blog`
-######1. Auth header not required.
+
+###### 1. Auth header not required.
 
 ##### Response Example
 
@@ -142,9 +143,11 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 }
 ```
 
-####2. Get a list of all the blog posts from current user.
+#### 2. Get a list of all the blog posts from current user.
+
 `GET /blog/user/:user_id`
-######Auth header required.
+
+###### Auth header required.
 
 ##### Response Example
 
@@ -173,9 +176,11 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 }
 ```
 
-####3. Create a new blog under current user.
+#### 3. Create a new blog under current user.
+
 `POST /blog/new`
-######Auth header required.
+
+###### Auth header required.
 
 ##### Payload Example
 
@@ -203,9 +208,11 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 }
 ```
 
-####4. Update a blog under current user.
+#### 4. Update a blog under current user.
+
 `PUT /blog/:blog_id`
-######Auth header required.
+
+###### Auth header required.
 
 ##### Payload Example
 
@@ -233,9 +240,11 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 }
 ```
 
-####5. Delete a blog under current user.
+#### 5. Delete a blog under current user.
+
 `Delete /blog/:blog_id`
-######Auth header required.
+
+###### Auth header required.
 
 ##### Response Example
 
