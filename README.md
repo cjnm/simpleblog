@@ -63,7 +63,7 @@ The `Postman Collection` is available from the link <https://www.getpostman.com/
 
 ### Status Codes
 
-Vending machine API returns the following status codes.
+simpleblog API returns the following status codes.
 
 | Status Code |         Description          |
 | :---------- | :--------------------------: |
@@ -107,7 +107,7 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 
 ###### JWT token and user details can be found on browser local storage for loggedin user using `localStorage.getItem('simpleblog-user')` comand on browser console.
 
-###### The `X-User-Avatar` is optional.
+###### The `X-User-Avatar` header is optional.
 
 ## Blog Endpoints
 
