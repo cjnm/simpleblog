@@ -17,6 +17,21 @@ const createNewBlog = async (title, content) => {
 
 }
 
+const deleteBlogById = async (id) => {
+    const headers = buildAuthHeaders();
+    try {
+        const response = await axios.delete(
+            `${process.env.REACT_APP_API_URL}/blog/${id}`,
+            headers
+        )
+
+        return response.data;
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
 const getAllBlogs = async () => {
     try {
         const response = await axios.get(
@@ -31,4 +46,20 @@ const getAllBlogs = async () => {
 
 }
 
-export { createNewBlog, getAllBlogs };
+const getAllBlogsByUser = async (user_id) => {
+    try {
+        const headers = buildAuthHeaders();
+        const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/blog/user/${user_id}`,
+            headers
+        )
+
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+
+}
+
+export { createNewBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById };

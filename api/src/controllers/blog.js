@@ -1,4 +1,4 @@
-import { saveBlog, getAllItems } from "../model/Blog.js";
+import { saveBlog, getAllItems, getAllItemsByUser, deleteItemById } from "../model/Blog.js";
 
 const createBlog = async (id, username, title, content, avatar_url) => {
     try {
@@ -6,7 +6,7 @@ const createBlog = async (id, username, title, content, avatar_url) => {
         return { success: true };
     } catch (error) {
         console.log(error);
-        return { success: false, message: 'Can not save blog' };
+        return { success: false, message: 'Cannot save blog' };
     }
 }
 
@@ -16,8 +16,28 @@ const getAllBlogs = async () => {
         return { success: true, data: response };
     } catch (error) {
         console.log(error);
-        return { success: false, message: 'Can not get blogs' };
+        return { success: false, message: 'Cannot get blogs' };
     }
 }
 
-export { createBlog, getAllBlogs };
+const getAllBlogsByUser = async (user_id) => {
+    try {
+        const response = await getAllItemsByUser(user_id);
+        return { success: true, data: response };
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: 'Cannot get blogs' };
+    }
+}
+
+const deleteBlogById = async (blog_id, user_id) => {
+    try {
+        const response = await deleteItemById(blog_id, user_id);
+        return { success: true, data: response };
+    } catch (error) {
+        console.log(error);
+        return { success: false, message: 'Cannot delete blog' };
+    }
+}
+
+export { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById };

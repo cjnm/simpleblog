@@ -42,4 +42,44 @@ const getAllItems = async () => {
     }
 }
 
-export { saveBlog, getAllItems }
+const getAllItemsByUser = async (user_id) => {
+    try {
+        if (!user_id) {
+            return [];
+        }
+
+        const dynamoDBClient = getDynamoDBClient();
+        const params = {
+            TableName: process.env.DYNAMODB_BLOG_TABLE,
+            FilterExpression: 'user_id = :user_id',
+            ExpressionAttributeValues: {
+                ':user_id': user_id
+            }
+        }
+
+        const response = await dynamoDBClient.scan(params).promise();
+        return response.Items;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const deleteItemById = async (blog_id, user_id) => {
+    try {
+        const dynamoDBClient = getDynamoDBClient();
+        const params = {
+            TableName: process.env.DYNAMODB_BLOG_TABLE,
+            Key: {
+                id: blog_id,
+                user_id: user_id
+            }
+        }
+
+        await dynamoDBClient.delete(params).promise();
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export { saveBlog, getAllItems, getAllItemsByUser, deleteItemById }
