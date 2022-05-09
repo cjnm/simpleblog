@@ -15,6 +15,7 @@ function App() {
   const jwt = queryParams.get('jwt');
   const username = queryParams.get('username');
   const id = queryParams.get('id');
+  const avatar_url = queryParams.get('avatar_url');
 
   // logout
   const handleLogout = () => {
@@ -30,7 +31,7 @@ function App() {
 
 
   if (jwt && username && id) {
-    localStorage.setItem('simpleblog-user', JSON.stringify({ jwt, username, id }));
+    localStorage.setItem('simpleblog-user', JSON.stringify({ jwt, username, id, avatar_url }));
   }
 
   useEffect(() => {
@@ -54,7 +55,7 @@ function App() {
           <NavBar user={user} handleLogout={handleLogout} handleLogin={handleLogin} />
         </Grid>
         <Grid xs={11}>
-          <BlogContent user={user} />
+          <BlogContent user={user} navigate={navigate} />
         </Grid>
       </Grid.Container>
 

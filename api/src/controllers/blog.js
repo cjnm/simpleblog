@@ -1,8 +1,8 @@
 import { saveBlog, getAllItems } from "../model/Blog.js";
 
-const createBlog = async (id, username, title, content) => {
+const createBlog = async (id, username, title, content, avatar_url) => {
     try {
-        await saveBlog(id, username, title, content);
+        await saveBlog(id, username, title, content, avatar_url);
         return { success: true };
     } catch (error) {
         console.log(error);

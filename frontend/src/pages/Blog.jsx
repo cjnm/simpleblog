@@ -1,15 +1,29 @@
-import { Container, Card, Row, Text } from "@nextui-org/react";
+import { useLocation } from "react-router";
+import { Container, Text, Spacer, Avatar, Row, Tooltip } from "@nextui-org/react";
 
 export default function Blog() {
+    const { state } = useLocation();
+    const { title, content, avatar_url, username } = state;
+
     return (
         <Container fluid>
-            <Card color="primary">
-                <Row justify="center" align="center">
-                    <Text h6 size={15} color="white" css={{ m: 0 }}>
-                        1 Blog
-                    </Text>
-                </Row>
-            </Card>
+            <Text h2>Blogs</Text>
+            <Row justify="flex-start">
+                <Tooltip
+                    color="primary"
+                    content={username}
+                    placement="top"
+                >
+                    <Avatar
+                        src={avatar_url || ''}
+                        text={username || ''}
+                    />
+                </Tooltip>
+            </Row>
+            <Spacer />
+            <Text h4>{title}</Text>
+            <Spacer />
+            <Text size="1.25rem">{content}</Text>
         </Container>
     );
 }

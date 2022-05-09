@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { getDynamoDBClient } from '../utils/dynamodb.js';
 
-const saveBlog = async (id, username, title, content) => {
+const saveBlog = async (id, username, title, content, avatar_url) => {
     try {
         const dynamoDBClient = getDynamoDBClient();
         const params = {
@@ -14,7 +14,8 @@ const saveBlog = async (id, username, title, content) => {
                                 user_id: id,
                                 username: username,
                                 title: title,
-                                content: content
+                                content: content,
+                                avatar_url: avatar_url || '',
                             }
                         }
                     }

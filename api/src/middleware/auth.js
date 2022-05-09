@@ -5,6 +5,7 @@ const { JWT_SECRET } = process.env;
 const auth = (req, res, next) => {
     const id = req.headers['x-user-id'];
     const username = req.headers['x-user-username'];
+    const avatar_url = req.headers['x-user-avatar'];
     const token = req.headers['authorization'].split(' ')[1];
 
     if (!token || !id || !username) {
@@ -28,6 +29,7 @@ const auth = (req, res, next) => {
 
         req.username = decoded.username;
         req.id = decoded.id;
+        req.avatar_url = avatar_url;
     } catch (err) {
         return res.status(401).json({
             success: false,

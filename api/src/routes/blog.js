@@ -5,10 +5,10 @@ import { auth } from '../middleware/auth.js';
 import { createBlog, getAllBlogs } from '../controllers/blog.js';
 
 blogRouter.post('/new', auth, async (req, res) => {
-    const { id, username } = req;
+    const { id, username, avatar_url } = req;
     const { title, content } = req.body;
 
-    const response = await createBlog(id, username, title, content);
+    const response = await createBlog(id, username, title, content, avatar_url);
 
     if (response.success) {
         res.status(200).json({ ...response, status: 200 });
