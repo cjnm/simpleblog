@@ -1,11 +1,10 @@
 import 'dotenv/config';
 import cluster from 'cluster';
 import os from 'os';
-
 import app from './src/index.js';
-const cpuCount = os.cpus().length;
 
 const { PORT } = process.env;
+const cpuCount = os.cpus().length;
 
 
 if (cluster.isMaster) {
