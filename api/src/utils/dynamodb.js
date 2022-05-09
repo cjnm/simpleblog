@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 
+// Create the DynamoDB service object
 const getDynamoDBClient = () => {
     return new AWS.DynamoDB.DocumentClient({
         region: process.env.AWS_REGION,

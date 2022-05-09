@@ -21,6 +21,5 @@ if (cluster.isMaster) {
 } else {
     app.listen(PORT, () => {
         console.log(`Server is running on PID:${process.pid} port ${PORT}`);
-    }
-    );
+    });
 }

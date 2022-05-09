@@ -6,11 +6,14 @@ import { saveUser } from '../controllers/user.js';
 
 const authRouter = express.Router();
 
+// Github oAuth
+// Redirects to Github oAuth for token
 authRouter.get('/github', (req, res) => {
     const githubAuthURI = getGithubAuthURI();
     res.redirect(githubAuthURI);
 })
 
+// Github oAuth callback to get token, generate jwt and redirect to home
 authRouter.get('/github/callback', async (req, res) => {
     try {
         const { code } = req.query;

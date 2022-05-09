@@ -1,5 +1,6 @@
 import { getDynamoDBClient } from '../utils/dynamodb.js';
 
+// Save/Update user info to dynamoDB after successful login or signup
 const saveUserInfo = async (user) => {
     try {
         const dynamoDBClient = getDynamoDBClient();

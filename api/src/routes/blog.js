@@ -4,6 +4,7 @@ import { auth } from '../middleware/auth.js';
 
 import { createBlog, getAllBlogs, getAllBlogsByUser, deleteBlogById, updateBlog } from '../controllers/blog.js';
 
+// Create a blog
 blogRouter.post('/new', auth, async (req, res) => {
 
     const { id, username, avatar_url } = req;
@@ -22,6 +23,7 @@ blogRouter.post('/new', auth, async (req, res) => {
     }
 })
 
+// Get all blogs by user
 blogRouter.get('/user/:user_id', auth, async (req, res) => {
     const { user_id } = req.params;
 
@@ -38,6 +40,7 @@ blogRouter.get('/user/:user_id', auth, async (req, res) => {
     }
 })
 
+// Delete a blog by id
 blogRouter.delete('/:blog_id', auth, async (req, res) => {
     const { blog_id } = req.params;
     const { id: user_id } = req;
@@ -51,6 +54,7 @@ blogRouter.delete('/:blog_id', auth, async (req, res) => {
     }
 })
 
+// Update a blog by id
 blogRouter.put('/:blog_id', auth, async (req, res) => {
     const { blog_id } = req.params;
     const { id: user_id } = req;
@@ -69,6 +73,7 @@ blogRouter.put('/:blog_id', auth, async (req, res) => {
     }
 })
 
+// Get all blogs
 blogRouter.get('/', async (req, res) => {
 
     let response = await getAllBlogs();

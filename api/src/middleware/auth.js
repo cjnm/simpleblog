@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const { JWT_SECRET } = process.env;
 
+// Checks if the jwt token is valid
 const auth = (req, res, next) => {
     const id = req.headers['x-user-id'];
     const username = req.headers['x-user-username'];
@@ -16,6 +17,7 @@ const auth = (req, res, next) => {
         });
     }
 
+    // Remove `Bearer` from token
     const token = jwt_token.split(' ')[1];
 
     try {
@@ -42,6 +44,7 @@ const auth = (req, res, next) => {
     return next();
 };
 
+// Checks if the token is expired
 const isTokenExpired = (expiry) => {
     if (!expiry) {
         return true;
