@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Simpleblog is a ExpressJS React app with DynamoDB as storage. The features of the APi are:
+Simpleblog is a ExpressJS React app which uses DynamoDB as storage and Redis for cahing.
+
+The features of the APi are:
 
 - Logged in user can create, update, delete and read blogs
 - Public user can read blog and can signup with github
@@ -45,6 +47,8 @@ cd ..
 cd frontend
 cp .env.example .env
 ```
+
+Update the environment variables with necessary parameters. For `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` get a new token and secret from <https://github.com/settings/developers>.
 
 - Seed database (database table names is to be defined in .env file)
 
