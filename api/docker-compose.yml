@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+# Redis
+  redis:
+    container_name: redis_c
+    image: redis:latest
+    restart: always
+    volumes:
+      - redis:/data
+
+  #Dynamo DB
+  dynamodb: 
+    container_name: dynamodb_c
+    image: amazon/dynamodb-local
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /data"
+    hostname: dynamodb
+    restart: always
+    volumes:
+      - dynamodb:/data
+
+  #Node API
+  api:
+    container_name: api_c
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      REDIS_HOST: redis_c
+      REDIS_PORT: 6379
+      GITHUB_CLIENT_ID: 
+      GITHUB_CLIENT_SECRET: 
+      APP_URI: http://localhost
+      FRONTEND_URI: http://localhost:3001
+      PORT: 3000
+      AWS_ACCESS_KEY_ID: X
+      AWS_SECRET_ACCESS_KEY: X
+      AWS_REGION: X
+      AWS_ENDPOINT: http://dynamodb:8000
+      DYNAMODB_USER_TABLE: Users
+      DYNAMODB_BLOG_TABLE: Blog
+      JWT_SECRET: 
+    depends_on:
+      - redis
+      - dynamodb
+
+volumes:
+  redis: {}
+  dynamodb: {}

@@ -2,7 +2,18 @@
 
 ## Introduction
 
-Simpleblog is a ExpressJS React app with DynamoDB as storage.
+Simpleblog is a ExpressJS React app with DynamoDB as storage. The features of the APi are:
+
+- Logged in user can create, update, delete and read blogs
+- Public user can read blog and can signup with github
+
+##### Other Features
+
+- Github Auth
+- Runs on multithreaded CPU with node cluster module
+- Uses local dynamoDB
+- Runs on docker
+- API caching with redis. Invalidates when any data updates else remains persistant.
 
 ## Setup
 
@@ -255,3 +266,7 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
     "status": 200
 }
 ```
+
+### Docker
+
+To run the API in docker set the `JWT_SECRET`, `GITHUB_CLIENT_SECRET`, `GITHUB_CLIENT_ID` and other environment variables in `docker-compose.yml` file and run the command `docker compose up`.

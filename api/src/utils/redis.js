@@ -1,5 +1,9 @@
 import Redis from 'ioredis';
-const redis = new Redis();
+
+const redis = new Redis({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+});
 
 /**
  * Invalidate cache for a specific key and for getAllItem cache
