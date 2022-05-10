@@ -4,5 +4,4 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install
 COPY . .
-RUN yarn migrate
 CMD ["yarn", "start:migrate"]
