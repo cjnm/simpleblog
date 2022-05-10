@@ -17,7 +17,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node app.js",
-    "migrate": "node migration.js"
+    "migrate": "node migration.js",
+    "start:migrate": "yarn migrate && yarn start"
   },
   "keywords": [],
   "author": "",
