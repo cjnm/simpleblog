@@ -65,6 +65,10 @@ yarn start
 yarn start
 ```
 
+### Docker
+
+To run the API in docker set the `JWT_SECRET`, `GITHUB_CLIENT_SECRET`, `GITHUB_CLIENT_ID` and other environment variables in `docker-compose.yml` file and run the command `docker compose up --build` inside the `api` folder.
+
 ## Implementation
 
 ### Endpoints
@@ -267,7 +271,3 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
     "status": 200
 }
 ```
-
-### Docker
-
-To run the API in docker set the `JWT_SECRET`, `GITHUB_CLIENT_SECRET`, `GITHUB_CLIENT_ID` and other environment variables in `docker-compose.yml` file and run the command `docker compose up --build` inside the `api` folder.
