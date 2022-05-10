@@ -80,6 +80,7 @@ simpleblog API returns the following status codes.
 | :---------- | :--------------------------: |
 | 200         |             `OK`             |
 | 401         | `BAD REQUEST` `Unauthorized` |
+| 500         |   `Internal Server Error`    |
 
 #### Success Response Example
 
@@ -269,4 +270,4 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 
 ### Docker
 
-To run the API in docker set the `JWT_SECRET`, `GITHUB_CLIENT_SECRET`, `GITHUB_CLIENT_ID` and other environment variables in `docker-compose.yml` file and run the command `docker compose up`.
+To run the API in docker set the `JWT_SECRET`, `GITHUB_CLIENT_SECRET`, `GITHUB_CLIENT_ID` and other environment variables in `docker-compose.yml` file and run the command `docker compose up --build` inside the `api` folder.

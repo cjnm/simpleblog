@@ -83,9 +83,11 @@ const createBlogTable = async () => {
 }
 
 
-async function migrate() {
+const migrate = async () => {
     await createUserTable().catch(err => console.log(err));
     await createBlogTable().catch(err => console.log(err));
 }
 
 migrate();
+
+export { migrate };

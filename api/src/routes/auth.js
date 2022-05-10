@@ -9,8 +9,13 @@ const authRouter = express.Router();
 // Github oAuth
 // Redirects to Github oAuth for token
 authRouter.get('/github', (req, res) => {
-    const githubAuthURI = getGithubAuthURI();
-    res.redirect(githubAuthURI);
+    try {
+        const githubAuthURI = getGithubAuthURI();
+        res.redirect(githubAuthURI);
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
 })
 
 // Github oAuth callback to get token, generate jwt and redirect to home
