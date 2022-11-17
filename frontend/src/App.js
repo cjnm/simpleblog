@@ -17,7 +17,7 @@ function App() {
   const id = queryParams.get('id');
   const avatar_url = queryParams.get('avatar_url');
 
-  // logout
+  // logout here.
   const handleLogout = () => {
     localStorage.removeItem("simpleblog-user");
     setUser(false);
