@@ -272,6 +272,8 @@ Github Auth has been used for user signup and user creation and JWT Auth has bee
 ```
 {
     "success": true,
-    "status": 200
+    "status": 200,
 }
 ```
+
+Thankyou!
